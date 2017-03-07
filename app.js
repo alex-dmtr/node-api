@@ -14,10 +14,10 @@ var app = express()
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-app.use(expressJWT({ secret: secret }).unless({path:[/\/login\/.*/]}))
+app.use(expressJWT({ secret: secret }).unless({path:[/\/login.*/]}))
 
-app.get('/login/:username', function(req, res, next) {
-  var token = jwt.sign({ username: req.params.username}, secret)
+app.post('/login', function(req, res, next) {
+  var token = jwt.sign({ username: req.body.username}, secret)
   // console.log(req.params.username)
   res.status(200).json(token)
   next()

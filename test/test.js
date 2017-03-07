@@ -8,7 +8,8 @@ describe('Server', function() {
   let token = null
   before('should login', function(done) {
     request(app)
-      .get('/login/kenobi')
+      .post('/login')
+      .send({username: 'kenobi'})
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
