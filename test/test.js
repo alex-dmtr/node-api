@@ -1,6 +1,6 @@
 var assert = require('assert')
 const request = require('supertest')
-const app = require('../server')
+const app = require('../app')
 
 describe('Server', function() {
   it('should quote Star Wars', function(done) {

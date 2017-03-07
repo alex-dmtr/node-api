@@ -1,6 +1,6 @@
-const server = require('./server')
+const app = require('./app')
 
-server.listen(8080, function() {
-  console.log('%s listening at %s', server.name, server.url);
+app.listen(8080, function() {
+  console.log('%s listening at %s', app.name, app.url);
 });
 
