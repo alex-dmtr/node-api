@@ -14,7 +14,7 @@ var app = express()
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-app.use(expressJWT({ secret: secret }).unless({path:[/\/login.*/]}))
+app.use(expressJWT({ secret }).unless({path:[/\/login.*/]}))
 
 app.post('/login', function(req, res, next) {
   var token = jwt.sign({ username: req.body.username}, secret)
@@ -23,7 +23,9 @@ app.post('/login', function(req, res, next) {
   next()
 })
 app.get('/hello/there', function(req, res, next) {
-  res.status(200).json('General Kenobi')
+  var message = 'General ' + req.user.username
+  console.log(message)
+  res.status(200).json(message)
   next()
 })
 

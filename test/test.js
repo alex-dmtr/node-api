@@ -6,10 +6,10 @@ const app = require('../app')
 describe('Server', function() {
 
   let token = null
-  before('should login', function(done) {
+  it('should login', function(done) {
     request(app)
       .post('/login')
-      .send({username: 'kenobi'})
+      .send({username: 'Kenobi'})
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
