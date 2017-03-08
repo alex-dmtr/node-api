@@ -24,9 +24,12 @@ app.post('/login', function(req, res, next) {
 })
 app.get('/hello/there', function(req, res, next) {
   var message = 'General ' + req.user.username
-  console.log(message)
-  res.status(200).json(message)
+  // console.log(message)
+  res.status(200).send(message)
   next()
+})
+app.get('/whoami', function(req, res, next) {
+  res.status(200).send(req.user.username)
 })
 
 module.exports = app

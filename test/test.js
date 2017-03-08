@@ -6,10 +6,11 @@ const app = require('../app')
 describe('Server', function() {
 
   let token = null
+  const username = 'Kenobi'
   it('should login', function(done) {
     request(app)
       .post('/login')
-      .send({username: 'Kenobi'})
+      .send({username})
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
@@ -21,8 +22,15 @@ describe('Server', function() {
     request(app)
       .get('/hello/there')
       .set('Authorization', 'Bearer ' + token)
-      .expect('Content-Type', /json/)
-      .expect("\"General Kenobi\"", done)
+      .expect('Content-Type', /text/)
+      .expect("General Kenobi", done)
+  })
+  it('should return username', function(done) {
+    request(app)
+      .get('/whoami')
+      .set('Authorization', 'Bearer ' + token)
+      .expect('Content-Type', /text/)
+      .expect(username, done)
   })
 })
 // describe('Array', function() {
